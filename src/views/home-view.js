@@ -14,15 +14,6 @@ class Home extends LitElement{
         `
     ];
 
-    static properties= {
-        user : String
-    }
-
-    constructor(){
-        super();
-        this.user = "";
-    }
-
     render(){
         return html`
             <div class="container">
@@ -40,7 +31,7 @@ class Home extends LitElement{
         if (userName != "") {
             location.href = `/game?value=${encodeURIComponent(userName)}`;
         }else{
-            console.log("campo vacio")
+            console.log("campo vacio");
         }
     }
 }

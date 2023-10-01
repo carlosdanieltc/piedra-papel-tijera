@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import '../components/game-plays.js';
 
 class Game extends LitElement{
 
@@ -16,25 +17,21 @@ class Game extends LitElement{
         `
     ];
 
-    static properties= {
-        user : String,
-    }
-
     constructor(){
         super();
         const urlParams = new URLSearchParams(window.location.search);
-        const valueReceived = urlParams.get('value');
-        console.log('Valor recibido en ViewB:', valueReceived);
+        this.userName = urlParams.get('value');
     }
 
     render(){
         return html`
             <header class="cabecera">
-                <h2>Hi user</h2>
+                <h2>Hi ${this.userName}</h2>
                 <button>Back</button>
             </header>
             <div class="container">
                 <h2>Score</h2>
+                <game-plays></game-plays>
             </div>
         `;
     }

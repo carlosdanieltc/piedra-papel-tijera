@@ -6,16 +6,25 @@ class Game extends LitElement{
     static styles = [
         css`
             .cabecera{
-                background: green;
+                color:white;
+                background: #0a3d62;
                 display:flex;
                 justify-content: space-around;
             }
 
+            .score{
+                text-align: center;
+            }
+
             .container{
-                background: blue;
+                background: #079992;
+                height: 100vh;
+                overflow: hidden;
             }
         `
     ];
+
+    
 
     constructor(){
         super();
@@ -27,13 +36,17 @@ class Game extends LitElement{
         return html`
             <header class="cabecera">
                 <h2>Hi ${this.userName}</h2>
-                <button>Back</button>
+                <button @click=${this.volverAHome}>Back</button>
             </header>
             <div class="container">
-                <h2>Score</h2>
+                <h2 class="score">Score:</h2>
                 <game-plays></game-plays>
             </div>
         `;
+    }
+
+    volverAHome(){
+        location.href = `/home`;
     }
 }
 

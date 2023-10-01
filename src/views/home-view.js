@@ -5,11 +5,13 @@ class Home extends LitElement{
     static styles = [
         css`
             .container{
-                background: green;
+                background: #079992;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                color: white
+                justify-content: center;
+                color: white;
+                height: 100vh
             }
         `
     ];

@@ -5,10 +5,23 @@ class Plays extends LitElement{
     static styles = [
         css`
             .container{
-                background: green;
+                background: #0a3d62;
                 display: flex;
                 align-items: center;
-                color: white
+                color: white;
+                justify-content: center
+            }
+
+            .play{
+                height: 200px;
+                width: 200px;
+                display: flex;
+                align-items: center;
+                border: 1px solid black;
+            }
+
+            img{
+                width: 100%;
             }
         `
     ];
@@ -16,16 +29,16 @@ class Plays extends LitElement{
     constructor(){
         super();
         this.plays = [
-            {name: 'Piedra', image: ''},
-            {name: 'Papel', image: ''},
-            {name: 'Tijera', image: ''}
+            {name: 'Piedra', image: '../assets/images/rock.jpg'},
+            {name: 'Papel', image: '../../assets/images/paper.jpg'},
+            {name: 'Tijera', image: '../../assets/images/scissors.jpg'}
         ]
     }
 
     render(){
         return html`
             <div class="container">
-                ${this.plays.map(item => html`<div>${item.name}</div>`)}
+                ${this.plays.map(item => html`<button class="play"><img src="${item.image}"></button>`)}
             </div>
         `;
     }

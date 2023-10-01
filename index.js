@@ -1,15 +1,27 @@
 import { LitElement, html } from 'lit-element';
-import 'lit-route';
+import { Router } from '@vaadin/router';
 import './src/views/home-view.js';
 import './src/views/game-view.js';
 
 class MyApp extends LitElement {
+
+  firstUpdated() {
+    super.firstUpdated();
+    const router = new Router(this.shadowRoot.querySelector('#outlet'));
+    router.setRoutes([
+      { path: '/', component: 'home-view' },
+      { path: '/game', component: 'game-view' },
+      { path: '(.*)', redirect: '/' },
+    ]);
+  }
+
+// ... 
+
   render() {
     return html`
-        <lit-route>
-            <home-view path="/"></home-view>
-            <game-view path="/game"></game-view>
-        </lit-route>
+      <main>
+        <div id="outlet"></div>
+      </main>
     `;
   }
 }

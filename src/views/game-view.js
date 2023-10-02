@@ -23,11 +23,18 @@ class Game extends LitElement{
                 overflow: hidden;
                 padding: 100px 20px 0px 20px ;
             }
+
+            .cards{
+                display: flex;
+                align-items: center;
+                color: white;
+                justify-content: center
+            }
         `
     ];    
 
     static properties = {
-        score: { type: Number, value: 0 },
+        //score: { type: Number, value: 0 },
         userSelection: { type: String, value: "" },
         //plays: {type: Array}
     }
@@ -37,6 +44,7 @@ class Game extends LitElement{
         this.score = 0;
         const urlParams = new URLSearchParams(window.location.search);
         this.userName = urlParams.get('value');
+        this.botCard = null;
 
         this.plays= [
             {name: 'Piedra', image: '../../assets/images/rock.jpg'},
@@ -53,8 +61,10 @@ class Game extends LitElement{
             </header>
             <div class="container">
                 <h2 class="score">Score: ${this.score}</h2>
-                <game-plays .plays="${this.plays}" @selected-option=${this.handleUserSelection}></game-plays>
-                <p>You: ${this.userSelection} - Bot: ${0}</p>
+                <div class="cards">
+                    ${this.plays.map(item => html`<game-plays .item=${item} @click="${()=>this.selection(item)}"></game-plays>`)}
+                </div>
+                <p>You: ${this.userSelection} - Bot: ${this.botCard}</p>
             </div>
         `;
     }
@@ -63,11 +73,26 @@ class Game extends LitElement{
         location.href = `/home`;
     }
 
-    handleUserSelection(event) {
-        this.userSelection = event.detail; // Actualiza la propiedad userSelection con el valor emitido por game-plays
+    // Función que actualiza la carta elegida y emite el evento
+    selection(item){
+        if (!this.clickDisabled) {
+            this.clickDisabled = true;
+            this.userSelection = item.name;
+            this.botSelection();
+            console.log(this.userSelection);
+        }   
     }
 
     botSelection(){
+        setTimeout(() => {
+            let numRandom = Math.floor(Math.random() * this.plays.length);
+            this.botCard = this.plays[numRandom].name;
+            console.log(this.botCard);
+            this.clickDisabled = false;
+          }, 1000);
+    }
+
+    validateGame(){
 
     }
 }

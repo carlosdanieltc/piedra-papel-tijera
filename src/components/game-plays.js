@@ -4,20 +4,12 @@ class Plays extends LitElement{
 
     static styles = [
         css`
-            .container{            
-                display: flex;
-                align-items: center;
-                color: white;
-                justify-content: center
-            }
-
             .playButton{
                 display: flex;
                 align-items: center;
-                border: 1px solid black;
                 cursor:pointer;
                 padding: 0;
-                margin: 0 10px 0 10px;
+                margin: 0 5px 0 5px;
             }
 
             img{
@@ -27,31 +19,10 @@ class Plays extends LitElement{
         `
     ];
 
-    properties = {
-        userSelection: { type: String, value: "" },
-        //plays: {type: Array, value: []}
-    }
-
-    constructor(){
-        super();
-        this.clickDisabled = false;
-    }
-
     render(){
         return html`
-            <div class="container">
-                ${this.plays.map(item => html`<button class="playButton" @click="${() => this.election(item.name)}" ?disabled="${this.clickDisabled}"><img src="${item.image}"></button>`)}
-            </div>
+            <button class="playButton"><img src="${this.item.image}"></button>
         `;
-    }
-
-    // Función que actualiza la carta elegida y emite el evento
-    election(option){
-        //if (!this.clickDisabled) {
-            this.userSelection = option;
-            this.dispatchEvent(new CustomEvent('selected-option', { detail: this.userSelection }));
-        //}   
-        //this.clickDisabled = !this.clickDisabled;
     }
 }
 

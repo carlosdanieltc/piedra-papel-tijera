@@ -14,20 +14,26 @@ class Game extends LitElement{
 
             .score{
                 text-align: center;
+                margin-bottom: 100px;
             }
 
             .container{
-                background: #079992;
+                background: #f5f6fa;
                 height: 100vh;
                 overflow: hidden;
+                padding: 100px 20px 0px 20px ;
             }
         `
-    ];
+    ];    
 
-    
+    static properties = {
+        score: { type: Number, value: 0 },
+        userSelection: { type: String, value: "" }
+    }
 
     constructor(){
         super();
+        this.score = 0;
         const urlParams = new URLSearchParams(window.location.search);
         this.userName = urlParams.get('value');
     }
@@ -36,17 +42,22 @@ class Game extends LitElement{
         return html`
             <header class="cabecera">
                 <h2>Hi ${this.userName}</h2>
-                <button @click=${this.volverAHome}>Back</button>
+                <button @click=${this.backToHome}>Back</button>
             </header>
             <div class="container">
-                <h2 class="score">Score:</h2>
-                <game-plays></game-plays>
+                <h2 class="score">Score: ${this.score}</h2>
+                <game-plays @selected-option=${this.handleUserSelection}></game-plays>
+                <p>You: ${this.userSelection} - Bot: ${0}</p>
             </div>
         `;
     }
 
-    volverAHome(){
+    backToHome(){
         location.href = `/home`;
+    }
+
+    handleUserSelection(event) {
+        this.userSelection = event.detail; // Actualiza la propiedad score con el valor emitido por game-plays
     }
 }
 

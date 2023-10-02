@@ -4,27 +4,32 @@ class Plays extends LitElement{
 
     static styles = [
         css`
-            .container{
-                background: #0a3d62;
+            .container{            
                 display: flex;
                 align-items: center;
                 color: white;
                 justify-content: center
             }
 
-            .play{
-                height: 200px;
-                width: 200px;
+            .playButton{
                 display: flex;
                 align-items: center;
                 border: 1px solid black;
+                cursor:pointer;
+                padding: 0;
+                margin: 0 10px 0 10px;
             }
 
             img{
                 width: 100%;
+                height: 100px;
             }
         `
     ];
+
+    properties = {
+        userSelection: { type: String, value: "" }
+    }
 
     constructor(){
         super();
@@ -38,11 +43,16 @@ class Plays extends LitElement{
     render(){
         return html`
             <div class="container">
-                ${this.plays.map(item => html`<button class="play"><img src="${item.image}"></button>`)}
+                ${this.plays.map(item => html`<button class="playButton" @click="${() => this.election(item.name)}"><img src="${item.image}"></button>`)}
             </div>
         `;
     }
-    
+
+    // Función que actualiza el puntaje y emite el evento
+    election(option){
+        this.userSelection = option;
+        this.dispatchEvent(new CustomEvent('selected-option', { detail: this.userSelection }));
+    }
 }
 
 customElements.define('game-plays', Plays);

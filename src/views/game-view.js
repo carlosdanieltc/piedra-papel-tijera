@@ -34,9 +34,10 @@ class Game extends LitElement{
     ];    
 
     static properties = {
-        //score: { type: Number, value: 0 },
-        userSelection: { type: String, value: "" },
-        //plays: {type: Array}
+        userCard: { type: String, value: "" },
+        botCard: { type: String},
+        score: { type: Number},
+        gameMessage: { type: String, value: "" },
     }
 
     constructor(){
@@ -47,9 +48,9 @@ class Game extends LitElement{
         this.botCard = null;
 
         this.plays= [
-            {name: 'Piedra', image: '../../assets/images/rock.jpg'},
-            {name: 'Papel', image: '../../assets/images/paper.jpg'},
-            {name: 'Tijera', image: '../../assets/images/scissors.jpg'}
+            {name: 'Rock', image: '../../assets/images/rock.jpg'},
+            {name: 'Paper', image: '../../assets/images/paper.jpg'},
+            {name: 'Scissors', image: '../../assets/images/scissors.jpg'}
         ]
     }
 
@@ -64,7 +65,8 @@ class Game extends LitElement{
                 <div class="cards">
                     ${this.plays.map(item => html`<game-plays .item=${item} @click="${()=>this.selection(item)}"></game-plays>`)}
                 </div>
-                <p>You: ${this.userSelection} - Bot: ${this.botCard}</p>
+                <p>You: ${this.userCard} - Bot: ${this.botCard}</p>
+                <p>${this.gameMessage}</p>
             </div>
         `;
     }
@@ -73,13 +75,12 @@ class Game extends LitElement{
         location.href = `/home`;
     }
 
-    // Función que actualiza la carta elegida y emite el evento
     selection(item){
         if (!this.clickDisabled) {
             this.clickDisabled = true;
-            this.userSelection = item.name;
+            this.userCard = item.name;
+            this.gameMessage = "";
             this.botSelection();
-            console.log(this.userSelection);
         }   
     }
 
@@ -87,13 +88,22 @@ class Game extends LitElement{
         setTimeout(() => {
             let numRandom = Math.floor(Math.random() * this.plays.length);
             this.botCard = this.plays[numRandom].name;
-            console.log(this.botCard);
             this.clickDisabled = false;
+            this.validateGame();
           }, 1000);
     }
 
     validateGame(){
-
+        if ((this.userCard == "Rock" && this.botCard == "Scissors") || (this.userCard == "Paper" && this.botCard == "Rock") || (this.userCard == "Scissors" && this.botCard == "Paper")) {
+            this.gameMessage = "You Win!!";
+            this.score++;
+        }else{
+            if (this.userCard == this.botCard) {
+                this.gameMessage = "is a tie!!"
+            }else{
+                this.gameMessage = "You Loseeeee!!"
+            }
+        }
     }
 }
 

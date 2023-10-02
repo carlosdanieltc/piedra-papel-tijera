@@ -28,7 +28,8 @@ class Game extends LitElement{
 
     static properties = {
         score: { type: Number, value: 0 },
-        userSelection: { type: String, value: "" }
+        userSelection: { type: String, value: "" },
+        //plays: {type: Array}
     }
 
     constructor(){
@@ -36,6 +37,12 @@ class Game extends LitElement{
         this.score = 0;
         const urlParams = new URLSearchParams(window.location.search);
         this.userName = urlParams.get('value');
+
+        this.plays= [
+            {name: 'Piedra', image: '../../assets/images/rock.jpg'},
+            {name: 'Papel', image: '../../assets/images/paper.jpg'},
+            {name: 'Tijera', image: '../../assets/images/scissors.jpg'}
+        ]
     }
 
     render(){
@@ -46,7 +53,7 @@ class Game extends LitElement{
             </header>
             <div class="container">
                 <h2 class="score">Score: ${this.score}</h2>
-                <game-plays @selected-option=${this.handleUserSelection}></game-plays>
+                <game-plays .plays="${this.plays}" @selected-option=${this.handleUserSelection}></game-plays>
                 <p>You: ${this.userSelection} - Bot: ${0}</p>
             </div>
         `;
@@ -57,7 +64,11 @@ class Game extends LitElement{
     }
 
     handleUserSelection(event) {
-        this.userSelection = event.detail; // Actualiza la propiedad score con el valor emitido por game-plays
+        this.userSelection = event.detail; // Actualiza la propiedad userSelection con el valor emitido por game-plays
+    }
+
+    botSelection(){
+
     }
 }
 

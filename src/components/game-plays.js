@@ -28,30 +28,30 @@ class Plays extends LitElement{
     ];
 
     properties = {
-        userSelection: { type: String, value: "" }
+        userSelection: { type: String, value: "" },
+        //plays: {type: Array, value: []}
     }
 
     constructor(){
         super();
-        this.plays = [
-            {name: 'Piedra', image: '../assets/images/rock.jpg'},
-            {name: 'Papel', image: '../../assets/images/paper.jpg'},
-            {name: 'Tijera', image: '../../assets/images/scissors.jpg'}
-        ]
+        this.clickDisabled = false;
     }
 
     render(){
         return html`
             <div class="container">
-                ${this.plays.map(item => html`<button class="playButton" @click="${() => this.election(item.name)}"><img src="${item.image}"></button>`)}
+                ${this.plays.map(item => html`<button class="playButton" @click="${() => this.election(item.name)}" ?disabled="${this.clickDisabled}"><img src="${item.image}"></button>`)}
             </div>
         `;
     }
 
-    // Función que actualiza el puntaje y emite el evento
+    // Función que actualiza la carta elegida y emite el evento
     election(option){
-        this.userSelection = option;
-        this.dispatchEvent(new CustomEvent('selected-option', { detail: this.userSelection }));
+        //if (!this.clickDisabled) {
+            this.userSelection = option;
+            this.dispatchEvent(new CustomEvent('selected-option', { detail: this.userSelection }));
+        //}   
+        //this.clickDisabled = !this.clickDisabled;
     }
 }
 

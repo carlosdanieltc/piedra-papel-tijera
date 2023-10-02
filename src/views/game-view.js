@@ -37,7 +37,7 @@ class Game extends LitElement{
         userCard: { type: String, value: "" },
         botCard: { type: String},
         score: { type: Number},
-        gameMessage: { type: String, value: "" },
+        gameMessage: { type: String},
     }
 
     constructor(){
@@ -63,7 +63,7 @@ class Game extends LitElement{
             <div class="container">
                 <h2 class="score">Score: ${this.score}</h2>
                 <div class="cards">
-                    ${this.plays.map(item => html`<game-plays .item=${item} @click="${()=>this.selection(item)}"></game-plays>`)}
+                    ${this.plays.map(item => html`<game-plays .enableButton=${this.clickDisabled} .item=${item} @click="${()=>this.selection(item)}"></game-plays>`)}
                 </div>
                 <p>You: ${this.userCard} - Bot: ${this.botCard}</p>
                 <p>${this.gameMessage}</p>
@@ -99,7 +99,7 @@ class Game extends LitElement{
             this.score++;
         }else{
             if (this.userCard == this.botCard) {
-                this.gameMessage = "is a tie!!"
+                this.gameMessage = "It's a tie!!"
             }else{
                 this.gameMessage = "You Loseeeee!!"
             }

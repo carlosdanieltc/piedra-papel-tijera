@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import '../components/game-plays.js';
+import {ChangesInGame} from '../../indexeddb.js'; 
 
 class Game extends LitElement{
 
@@ -47,9 +48,10 @@ class Game extends LitElement{
 
     constructor(){
         super();
-        this.score = 0;
         const urlParams = new URLSearchParams(window.location.search);
-        this.userName = urlParams.get('value');
+        this.userName = urlParams.get('userName');
+        this.score = urlParams.get('score');
+        console.log("Score de "+this.userName+" -> "+ this.score);
         this.botCard = null;
 
         this.plays= [
@@ -103,6 +105,7 @@ class Game extends LitElement{
         if ((this.userCard == "Rock" && this.botCard == "Scissors") || (this.userCard == "Paper" && this.botCard == "Rock") || (this.userCard == "Scissors" && this.botCard == "Paper")) {
             this.gameMessage = "You Win!!";
             this.score++;
+            ChangesInGame(this.userName,this.score);
         }else{
             if (this.userCard == this.botCard) {
                 this.gameMessage = "It's a tie!!"

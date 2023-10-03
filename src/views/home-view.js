@@ -19,11 +19,11 @@ class Home extends LitElement{
 
     static properties = {
         myUser: { type: HTMLElement, value: null },
+        score: { type: HTMLElement, value: null },
     }
 
     constructor(){
         super();
-        let score= 0;
     }
 
     render(){
@@ -37,12 +37,16 @@ class Home extends LitElement{
         `;
     }
     
-    valUser(){
+    async valUser(){
         this.myUser = this.shadowRoot.getElementById('userName');
         const userName = this.myUser.value;
         if (userName != "") {
-            location.href = `/game?value=${encodeURIComponent(userName)}`;
-            ValidateUser(userName);
+            try {
+                this.score = await ValidateUser(userName);
+                location.href = `/game?userName=${encodeURIComponent(userName)}&score=${encodeURIComponent(this.score)}`;
+            } catch (error) {
+                
+            }
         }else{
             console.log("campo vacio");
         }

@@ -35,8 +35,6 @@ class MyApp extends LitElement {
     ]);
   }
 
-// ... 
-
   render() {
     return html`
       <main>

@@ -16,19 +16,24 @@ class Home extends LitElement{
         `
     ];
 
+    constructor(){
+        super();
+        const score= 0;
+    }
+
     render(){
         return html`
             <div class="container">
                 <img src="../../assets/icons/icon-72x72.png"> 
                 <h1>Create new player</h1>
-                <input type="text" id="user">
-                <button class="boton" @click=${this.validaUsuario}>Join</button>
+                <input type="text" id="userName">
+                <button id="btn-save" class="boton" @click=${this.validaUsuario}>Join</button>
             </div>
         `;
     }
     
     validaUsuario(){
-        const myUser = this.shadowRoot.getElementById('user');
+        const myUser = this.shadowRoot.getElementById('userName');
         const userName = myUser.value;
         if (userName != "") {
             location.href = `/game?value=${encodeURIComponent(userName)}`;

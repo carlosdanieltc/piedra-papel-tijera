@@ -10,6 +10,11 @@ class Game extends LitElement{
                 background: #0a3d62;
                 display:flex;
                 justify-content: space-around;
+                align-items: center;
+            }
+
+            .backToHome{
+                height: 50px;
             }
 
             .score{
@@ -58,7 +63,7 @@ class Game extends LitElement{
         return html`
             <header class="cabecera">
                 <h2>Hi ${this.userName}</h2>
-                <button @click=${this.backToHome}>Back</button>
+                <button class="backToHome" @click=${this.backToHome}>Back</button>
             </header>
             <div class="container">
                 <h2 class="score">Score: ${this.score}</h2>

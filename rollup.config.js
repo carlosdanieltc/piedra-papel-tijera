@@ -4,7 +4,8 @@ import { babel } from "@rollup/plugin-babel";
 import copy from "rollup-plugin-copy";
 
 export default {
-  input: "index.js",
+  input: ["index.js",
+          "assets"],
   output: {
     file: "docs/bundle.js",
     format: "esm",

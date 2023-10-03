@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { Router } from '@vaadin/router';
 import './src/views/home-view.js';
 import './src/views/game-view.js';
-import {StartDataBase} from '../../indexeddb.js'; 
+import {StartDataBase} from './indexeddb.js'; 
 
 let swLocation = "sw.js";
 

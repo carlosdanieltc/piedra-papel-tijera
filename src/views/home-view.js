@@ -45,7 +45,7 @@ class Home extends LitElement{
                 this.score = await ValidateUser(userName);
                 location.href = `/game?userName=${encodeURIComponent(userName)}&score=${encodeURIComponent(this.score)}`;
             } catch (error) {
-                
+                console.log("Error al validar usuario");
             }
         }else{
             console.log("campo vacio");

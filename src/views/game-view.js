@@ -51,7 +51,6 @@ class Game extends LitElement{
         const urlParams = new URLSearchParams(window.location.search);
         this.userName = urlParams.get('userName');
         this.score = urlParams.get('score');
-        console.log("Score de "+this.userName+" -> "+ this.score);
         this.botCard = null;
 
         this.plays= [

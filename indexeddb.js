@@ -33,11 +33,8 @@ export function ValidateUser(userName) {
       request.onsuccess = function (event) {
         const user = event.target.result;
         if (user) {
-          console.log("EXISTE");
-          console.log("DESDE ValidateUser PUNTOS:" + user.points);
           resolve(user.points); // Resuelve la promesa con los puntos del usuario
         } else {
-          console.log("NO EXISTE LO AÑADO");
           myWarehouse.add({
             user: userName,
             points: 0
@@ -57,7 +54,6 @@ export function ChangesInGame(userName, points){
     let transaction = bd.transaction(["Users"], "readwrite");
     let myWarehouse = transaction.objectStore("Users");
 
-    console.log("HOLA DESDE ChangesInGame "+userName+" Puntos: "+points);
     const request = myWarehouse.get(userName);
 
     request.onsuccess = function (event) {
@@ -68,20 +64,3 @@ export function ChangesInGame(userName, points){
         }
     };
 }
-
-// export function ChargePoints(userName){
-//     let transaction = bd.transaction(["Users"], "readonly");
-//     let myWarehouse = transaction.objectStore("Users");
-
-//     console.log("HOLA DESDE ChargePoints");
-//     const request = myWarehouse.get(userName);
-
-//     request.onsuccess = function (event) {
-//         const user = event.target.result;
-//         if (user) {
-//             return user.points;
-//         }
-//     };
-// }
-
-

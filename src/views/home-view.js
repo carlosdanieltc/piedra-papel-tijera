@@ -1,5 +1,5 @@
 import { LitElement, html, css} from 'lit';
-import {SaveUser} from '../../indexeddb.js'; 
+import {ValidateUser} from '../../indexeddb.js'; 
 
 class Home extends LitElement{
 
@@ -42,7 +42,7 @@ class Home extends LitElement{
         const userName = this.myUser.value;
         if (userName != "") {
             location.href = `/game?value=${encodeURIComponent(userName)}`;
-            SaveUser(userName);
+            ValidateUser(userName);
         }else{
             console.log("campo vacio");
         }

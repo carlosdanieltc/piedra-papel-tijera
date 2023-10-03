@@ -1,10 +1,6 @@
 let bd;
 
-function StartDataBase(){
-    console.log("HOLA");
-    console.log(document.querySelector("#btn-save"));
-    let btnRegister = document.querySelector("#btn-save");
-    btnRegister.addEventListener("click", SaveUser)
+export function StartDataBase(){
 
     let request = indexedDB.open("Data-Users");
 
@@ -24,24 +20,16 @@ let Start =  (event) => {
 let CreateDataUsers =  (event) => {
     let database = event.target.result;
     let warehouse = database.createObjectStore("Users",{keyPath: "user"});
-    warehouse.createIndex("SearPoints","points",{unique: false});
-    console.log("Function CreateDataUsers");
+    warehouse.createIndex("userPoints","points",{unique: false});
 }
 
-let SaveUser = () => {
-    let n = document.getElementById("#userName").value;
-    let p = parseInt(document.querySelector("#userPoints").value);
-
+export function SaveUser(userName){
     let transaction = bd.transaction(["Users"], "readwrite");
     let myWarehouse = transaction.objectStore("Users");
 
     myWarehouse.add({
-        name: n,
-        points: p
+        user: userName,
+        points: 0
     });
-
-    document.querySelector("userName").value = "";
-    document.querySelector("userPoints").value = 0;
 }
 
-window.addEventListener("load",StartDataBase);

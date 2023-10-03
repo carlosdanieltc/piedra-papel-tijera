@@ -90,6 +90,7 @@ class Game extends LitElement{
     }
 
     botSelection(){
+        this.botCard = "...";
         setTimeout(() => {
             let numRandom = Math.floor(Math.random() * this.plays.length);
             this.botCard = this.plays[numRandom].name;

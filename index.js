@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { Router } from '@vaadin/router';
 import './src/views/home-view.js';
 import './src/views/game-view.js';
+import {StartDataBase} from '../../indexeddb.js'; 
 
 class MyApp extends LitElement {
   
@@ -33,6 +34,8 @@ class MyApp extends LitElement {
       { path: '/game', component: 'game-view' },
       { path: '(.*)', redirect: '/' },
     ]);
+    //document.addEventListener("load",StartDataBase();
+    StartDataBase();
   }
 
   render() {

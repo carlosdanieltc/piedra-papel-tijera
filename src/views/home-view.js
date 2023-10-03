@@ -1,4 +1,5 @@
 import { LitElement, html, css} from 'lit';
+import {SaveUser} from '../../indexeddb.js'; 
 
 class Home extends LitElement{
 
@@ -16,9 +17,13 @@ class Home extends LitElement{
         `
     ];
 
+    static properties = {
+        myUser: { type: HTMLElement, value: null },
+    }
+
     constructor(){
         super();
-        const score= 0;
+        let score= 0;
     }
 
     render(){
@@ -27,16 +32,17 @@ class Home extends LitElement{
                 <img src="../../assets/icons/icon-72x72.png"> 
                 <h1>Create new player</h1>
                 <input type="text" id="userName">
-                <button id="btn-save" class="boton" @click=${this.validaUsuario}>Join</button>
+                <button class="boton" @click=${this.valUser}>Join</button>
             </div>
         `;
     }
     
-    validaUsuario(){
-        const myUser = this.shadowRoot.getElementById('userName');
-        const userName = myUser.value;
+    valUser(){
+        this.myUser = this.shadowRoot.getElementById('userName');
+        const userName = this.myUser.value;
         if (userName != "") {
             location.href = `/game?value=${encodeURIComponent(userName)}`;
+            SaveUser(userName);
         }else{
             console.log("campo vacio");
         }

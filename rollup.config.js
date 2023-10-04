@@ -43,7 +43,7 @@ export default {
     babel({ babelHelpers: "bundled" }),
     terser(),
     copy({
-      targets: [{ src: "public/*", dest: "dist" }], 
+      targets: [{ src: "public/*", dest: "docs" }], 
     }),
   ],
   watch: {

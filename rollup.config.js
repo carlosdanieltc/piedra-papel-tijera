@@ -16,6 +16,7 @@ export default {
     copy({
       targets: [
         { src: "assets/*", dest: "dist/assets" }, // Copia la carpeta "assets" a "dist/assets"
+        { src: "index.html", dest: "dist" }, // Copia index.html a la carpeta "dist"
       ],
     }),
   ],

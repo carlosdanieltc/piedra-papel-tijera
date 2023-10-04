@@ -6,7 +6,7 @@ import copy from "rollup-plugin-copy";
 export default {
   input: "index.js",       
   output: {
-    file: "dist/bundle.js",
+    file: "docs/bundle.js",
     format: "esm",
   },
   plugins: [
@@ -15,8 +15,10 @@ export default {
     terser(),
     copy({
       targets: [
-        { src: "assets/*", dest: "dist/assets" }, // Copia la carpeta "assets" a "dist/assets"
-        { src: "index.html", dest: "dist" }, // Copia index.html a la carpeta "dist"
+        { src: "assets/*", dest: "docs/assets" }, // Copia la carpeta "assets" a "dist/assets"
+        { src: "index.html", dest: "docs" }, // Copia index.html a la carpeta "dist"
+        { src: "manifest.json", dest: "docs" }, 
+        { src: "indexeddb.js", dest: "docs" }, 
       ],
     }),
   ],

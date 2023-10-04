@@ -14,6 +14,27 @@ class Home extends LitElement{
                 color: white;
                 height: 100vh
             }
+
+            .buttonJoin{
+                padding: 10px 20px;
+                background-color: #0c2461;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 15px;
+                height: 35px;
+                width: 80px
+            }
+
+            #userName{
+                height: 30px;
+                padding: 3px 7px 3px 7px;
+            }
+            
+            h1{
+                margin: 10px 20px 10px 20px
+            }
         `
     ];
 
@@ -31,8 +52,8 @@ class Home extends LitElement{
             <div class="container">
                 <img src="../../assets/icons/icon-72x72.png"> 
                 <h1>Create new player</h1>
-                <input type="text" id="userName">
-                <button class="boton" @click=${this.valUser}>Join</button>
+                <input placeholder="Username" type="text" id="userName">
+                <button class="buttonJoin" @click=${this.valUser}>Join !</button>
             </div>
         `;
     }

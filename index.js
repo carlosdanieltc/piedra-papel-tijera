@@ -4,15 +4,6 @@ import './src/views/home-view.js';
 import './src/views/game-view.js';
 import {StartDataBase} from './indexeddb.js'; 
 
-let swLocation = "sw.js";
-
-if(navigator.serviceWorker){
-
-  if(window.location.href.includes("localhost")) swLocation = "/sw.js";
-  navigator.serviceWorker.register(swLocation);
-
-}
-
 class MyApp extends LitElement {
   
   static styles = css`

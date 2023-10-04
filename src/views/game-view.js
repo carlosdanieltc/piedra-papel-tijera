@@ -8,14 +8,24 @@ class Game extends LitElement{
         css`
             .cabecera{
                 color:white;
-                background: #0a3d62;
+                background: #079992;
                 display:flex;
                 justify-content: space-around;
                 align-items: center;
             }
 
             .backToHome{
+                display: flex
+                width: 50px;
                 height: 50px;
+                border-radius: 50%;
+                background-color: transparent; 
+                border: none;
+                cursor: pointer;
+            }
+
+            img{
+                width: 50px;
             }
 
             .score{
@@ -44,6 +54,7 @@ class Game extends LitElement{
         botCard: { type: String},
         score: { type: Number},
         gameMessage: { type: String},
+        gameText: {type: String}
     }
 
     constructor(){
@@ -52,6 +63,7 @@ class Game extends LitElement{
         this.userName = urlParams.get('userName');
         this.score = urlParams.get('score');
         this.botCard = null;
+        this.gameText = "Choose your card!";
 
         this.plays= [
             {name: 'Rock', image: '../../assets/images/rock.jpg'},
@@ -64,9 +76,10 @@ class Game extends LitElement{
         return html`
             <header class="cabecera">
                 <h2>Hi ${this.userName}</h2>
-                <button class="backToHome" @click=${this.backToHome}>Back</button>
+                <button class="backToHome" @click=${this.backToHome}><img src="../../assets/images/backButton.png"></button>
             </header>
             <div class="container">
+                <h3>${this.gameText}</h3>
                 <h2 class="score">Score: ${this.score}</h2>
                 <div class="cards">
                     ${this.plays.map(item => html`<game-plays .enableButton=${this.clickDisabled} .item=${item} @click="${()=>this.selection(item)}"></game-plays>`)}
@@ -92,6 +105,7 @@ class Game extends LitElement{
 
     botSelection(){
         this.botCard = "...";
+        this.gameText = "...";
         setTimeout(() => {
             let numRandom = Math.floor(Math.random() * this.plays.length);
             this.botCard = this.plays[numRandom].name;
@@ -112,6 +126,7 @@ class Game extends LitElement{
                 this.gameMessage = "You Loseeeee!!"
             }
         }
+        this.gameText = "Choose your card!";
     }
 }
 

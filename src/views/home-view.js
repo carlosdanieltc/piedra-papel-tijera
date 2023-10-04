@@ -32,7 +32,7 @@ class Home extends LitElement{
                 padding: 3px 7px 3px 7px;
             }
             
-            h1{
+            h3{
                 margin: 10px 20px 40px 20px
             }
         `
@@ -51,7 +51,7 @@ class Home extends LitElement{
         return html`
             <div class="container">
                 <img src="../../assets/icons/icon-72x72.png">
-                <h1>Rock, Paper and Scissors</h1>
+                <h3>Rock, Paper and Scissors</h3>
                 <input placeholder="Username" type="text" id="userName">
                 <button class="buttonJoin" @click=${this.valUser}>Join !</button>
             </div>

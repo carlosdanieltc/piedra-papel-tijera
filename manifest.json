@@ -1,6 +1,6 @@
 {
-  "name": "piedra-papel-tijera",
-  "short_name": "piedra-papel-tijera",
+  "name": "Rock, Paper and Scissors",
+  "short_name": "R,P and S",
   "theme_color": "#fff",
   "background_color": "#fff",
   "display": "standalone",

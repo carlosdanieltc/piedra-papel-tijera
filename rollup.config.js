@@ -4,10 +4,9 @@ import { babel } from "@rollup/plugin-babel";
 import copy from "rollup-plugin-copy";
 
 export default {
-  input: ["index.js",
-          "assets"],
+  input: "index.js",       
   output: {
-    file: "docs/bundle.js",
+    file: "dist/bundle.js",
     format: "esm",
   },
   plugins: [
@@ -15,7 +14,10 @@ export default {
     babel({ babelHelpers: "bundled" }),
     terser(),
     copy({
-      targets: [{ src: "public/*", dest: "dist" }], 
+      targets: [
+        { src: "public/*", dest: "dist" }, // Copia la carpeta "public" a "dist"
+        { src: "assets/*", dest: "dist/assets" }, // Copia la carpeta "assets" a "dist/assets"
+      ],
     }),
   ],
   watch: {

@@ -34,7 +34,18 @@ class MyApp extends LitElement {
       { path: '/game', component: 'game-view' },
       { path: '(.*)', redirect: '/' },
     ]);
-    //document.addEventListener("load",StartDataBase();
+
+    if(navigator.serviceWorker){
+
+      navigator.serviceWorker.register('/service-worker.js')
+          .then(function(registration) {
+            console.log('Service Worker registrado con éxito:', registration);
+          })
+          .catch(function(error) {
+            console.error('Error al registrar el Service Worker:', error);
+          });
+    }
+
     StartDataBase();
   }
 

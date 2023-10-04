@@ -33,7 +33,7 @@ class Home extends LitElement{
             }
             
             h1{
-                margin: 10px 20px 10px 20px
+                margin: 10px 20px 40px 20px
             }
         `
     ];
@@ -50,8 +50,8 @@ class Home extends LitElement{
     render(){
         return html`
             <div class="container">
-                <img src="../../assets/icons/icon-72x72.png"> 
-                <h1>Create new player</h1>
+                <img src="../../assets/icons/icon-72x72.png">
+                <h1>Rock, Paper and Scissors</h1>
                 <input placeholder="Username" type="text" id="userName">
                 <button class="buttonJoin" @click=${this.valUser}>Join !</button>
             </div>

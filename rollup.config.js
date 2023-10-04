@@ -15,7 +15,6 @@ export default {
     terser(),
     copy({
       targets: [
-        { src: "public/*", dest: "dist" }, // Copia la carpeta "public" a "dist"
         { src: "assets/*", dest: "dist/assets" }, // Copia la carpeta "assets" a "dist/assets"
       ],
     }),
